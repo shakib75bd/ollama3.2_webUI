@@ -49,7 +49,7 @@ Make sure you have the following installed:
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/shakib75bd/ollama3.2_webUI
-   cd ollama-chatbot
+   cd ollama3.2_webUI
    ```
 
 2. **Create a Virtual Environment (Optional)**
