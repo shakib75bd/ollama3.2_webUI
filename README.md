@@ -27,10 +27,11 @@ A simple ChatGPT like chatbot interface that integrates with the Ollama model, a
 Follow these steps to set up the project on your local machine.
 
 ### Prerequisites
-Make sure you have the following installed:
+Make sure you have the following:
+- Linux/Mac/Windows CL (Recommended| RAM: 16 GB, Minimum: 8 GB | GPU: External, Minimum: APU(slower) | CPU: Octa-Core, Minimum: Quad-core | Storage: 20 GB, Minimum: 5 GB)
 - Python (3.8 or above)
 - Django
-- Ollama (Ensure it's installed and configured correctly)
+- Ollama (Ensure it's installed and configured correctly), Here's everything step by step:
  
 **Install Ollama**
 ```bash
