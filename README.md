@@ -31,6 +31,17 @@ Make sure you have the following installed:
 - Python (3.8 or above)
 - Django
 - Ollama (Ensure it's installed and configured correctly)
+**Install Ollama**
+   ```bash
+   curl -fsSL https://ollama.com/install.sh | sh
+   ```
+```bash
+   ollama  serve
+   ```
+
+ ```bash
+   ollama  ollama run llama3.2
+   ```
 - Anaconda or virtual environment (optional but recommended)
 
 ### Installation
@@ -59,51 +70,6 @@ Make sure you have the following installed:
      django-admin startproject ollama_project
      cd ollama_project
      ```
-
-5. **Create a Django App**
-   ```bash
-   python manage.py startapp chatbot
-   ```
-
-6. **Configure Settings**
-   - Open `ollama_project/settings.py` and add your app to `INSTALLED_APPS`:
-     ```python
-     INSTALLED_APPS = [
-         ...
-         'chatbot',
-     ]
-     ```
-
-7. **Setup URLs**
-   - In `ollama_project/urls.py`, add the following:
-     ```python
-     from django.urls import path
-     from chatbot import views
-
-     urlpatterns = [
-         path('run_command/', views.run_command, name='run_command'),
-         # Add other URLs as needed
-     ]
-     ```
-
-8. **Create a View for Command Execution**
-   - In `chatbot/views.py`, create a view to handle command execution:
-     ```python
-     from django.http import JsonResponse
-     import subprocess
-
-     def run_command(request):
-         if request.method == 'POST':
-             command = request.POST.get('command')
-             # Run the command and get the output
-             result = subprocess.run(command.split(), capture_output=True, text=True)
-             return JsonResponse({'result': result.stdout.strip(), 'error': result.stderr.strip()})
-     ```
-
-9. **Run Migrations**
-   ```bash
-   python manage.py migrate
-   ```
 
 10. **Start the Development Server**
     ```bash
