@@ -40,7 +40,7 @@ Make sure you have the following installed:
    ```
 
  ```bash
-   ollama  ollama run llama3.2
+   ollama run llama3.2
    ```
 - Anaconda or virtual environment (optional but recommended)
 
