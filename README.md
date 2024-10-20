@@ -31,7 +31,7 @@ Make sure you have the following installed:
 - Python (3.8 or above)
 - Django
 - Ollama (Ensure it's installed and configured correctly)
- <br>
+ 
 **Install Ollama**
 ```bash
    curl -fsSL https://ollama.com/install.sh | sh
