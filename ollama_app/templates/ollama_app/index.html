@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ollama Chatbot Interface</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      .chat-box {
+        max-height: 400px;
+        overflow-y: auto;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fafafa;
+      }
+
+      .message {
+        margin: 10px 0;
+        padding: 8px;
+        border-radius: 4px;
+        position: relative;
+      }
+
+      .user {
+        background-color: #e1ffc7;
+        text-align: right;
+        align-self: flex-end;
+      }
+
+      .ollama {
+        background-color: #d9edf7;
+        text-align: left;
+        align-self: flex-start;
+      }
+
+      .input-area {
+        display: flex;
+        align-items: center;
+      }
+
+      input[type="text"] {
+        flex: 1;
+        padding: 10px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      .credits {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .credits img {
+        max-width: 100px; /* Adjust as needed */
+        border-radius: 50%; /* Circular image */
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Ollama Chatbot</h1>
+      <div class="chat-box" id="chat-box"></div>
+      <div class="input-area">
+        <input
+          type="text"
+          name="command"
+          id="command"
+          placeholder="Enter command"
+          required
+        />
+        <button type="submit" id="send-button">Run Command</button>
+      </div>
+      <div class="credits">
+        <div>Credit: Shakib Hossen Shanto, 2024</div>
+        <div>Department of CSE, Begum Rokeya University</div>
+      </div>
+    </div>
+
+    <script>
+      const chatBox = document.getElementById("chat-box");
+      const commandInput = document.getElementById("command");
+      const sendButton = document.getElementById("send-button");
+
+      sendButton.addEventListener("click", async (e) => {
+        e.preventDefault();
+        await runCommand();
+      });
+
+      // Allow pressing Enter to run the command
+      commandInput.addEventListener("keypress", async (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          await runCommand();
+        }
+      });
+
+      async function runCommand() {
+        const command = commandInput.value.trim();
+        if (command) {
+          appendMessage(command, "user");
+          commandInput.value = ""; // Clear input field
+          const response = await fetch("/run_command/", {
+            method: "POST",
+            headers: {
+              "X-CSRFToken": "{{ csrf_token }}", // Make sure this is rendered properly
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({ command: command }),
+          });
+          const data = await response.json();
+          appendMessage(data.result || data.error, "ollama");
+        }
+      }
+
+      function appendMessage(message, sender) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", sender);
+        messageDiv.textContent = message;
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+      }
+    </script>
+  </body>
+</html>
