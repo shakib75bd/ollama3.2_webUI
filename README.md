@@ -31,14 +31,14 @@ Make sure you have the following installed:
 - Python (3.8 or above)
 - Django
 - Ollama (Ensure it's installed and configured correctly)
+ <br>
 **Install Ollama**
-   ```bash
+```bash
    curl -fsSL https://ollama.com/install.sh | sh
    ```
 ```bash
    ollama  serve
    ```
-
  ```bash
    ollama run llama3.2
    ```
@@ -64,19 +64,12 @@ Make sure you have the following installed:
    pip install django
    ```
 
-4. **Setup Django Project**
-   - Navigate to the project directory and create a new Django project:
-     ```bash
-     django-admin startproject ollama_project
-     cd ollama_project
-     ```
-
-10. **Start the Development Server**
+4. **Start the Development Server**
     ```bash
     python manage.py runserver
     ```
 
-11. **Access the Chatbot Interface**
+5. **Access the Chatbot Interface**
     Open your web browser and go to:
     ```
     http://127.0.0.1:8000
