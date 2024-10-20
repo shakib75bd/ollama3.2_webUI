@@ -1,6 +1,6 @@
-# Ollama Chatbot Interface
+# Ollama Offline Chatbot Interface
 
-A simple chatbot interface that integrates with the Ollama model, allowing you to run commands and receive responses through a web-based UI.
+A simple ChatGPT like chatbot interface that integrates with the Ollama model, allowing you to run commands and receive responses through a web-based UI.
 
 ## Table of Contents
 - [Features](#features)
